@@ -1,0 +1,9 @@
+IMAGE FOLDER
+
+Add your portfolio images to this folder.
+
+AIMath-Solver main image:
+aimath-solver-main.png
+
+Keep the AIMath-Solver source image at its original 1600 x 1000 px size.
+Do not rename it unless you also update the HTML image path.
