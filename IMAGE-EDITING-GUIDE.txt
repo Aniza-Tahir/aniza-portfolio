@@ -1,0 +1,13 @@
+HOW TO ADD PORTFOLIO IMAGES
+
+1. Open assets/images/
+2. Put your image file there.
+3. For the AIMath-Solver main project image, use the filename:
+   aimath-solver-main.png
+4. The image is already connected to:
+   - portfolio.html
+   - portfolio/aimath-solver.html
+5. Keep the original image dimensions. The website CSS automatically scales the image without stretching it.
+
+IMPORTANT
+Do not delete the assets/images folder. Do not change the AIMath-Solver filename unless you also change the src path in the HTML.
