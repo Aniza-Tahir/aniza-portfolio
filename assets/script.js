@@ -15,12 +15,12 @@ if(form){
 }
 
 
-/* Scroll-reveal animations for portfolio content */
+/* Scroll-reveal animations for all main-page content */
 document.documentElement.classList.add('js');
 
-const revealTargets = document.querySelectorAll(
-  '.section-head, .two-col, .cards .card, .work-grid .project, .sample-list .sample, .service-row, .timeline-item, .contact-grid > *, .cta-inner, .page-hero .container, .case-hero .container'
-);
+const revealTargets = Array.from(document.querySelectorAll(
+  'main h1, main h2, main h3, main p, main li, main .kicker, main .eyebrow, main .card, main .project, main .sample, main .service-row, main .timeline-item, main .strip-grid > div, main .case-image, main .notice, main .contact-item, main .form, main .btn, main .pill, main .link'
+)).filter(element => !element.closest('.hero'));
 
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver((entries, observer) => {
@@ -31,15 +31,13 @@ if ('IntersectionObserver' in window) {
       }
     });
   }, {
-    threshold: 0.12,
-    rootMargin: '0px 0px -45px 0px'
+    threshold: 0.08,
+    rootMargin: '0px 0px -35px 0px'
   });
 
   revealTargets.forEach((element, index) => {
     element.setAttribute('data-reveal', '');
-    if (element.matches('.cards .card, .work-grid .project, .service-row, .timeline-item')) {
-      element.style.transitionDelay = (index % 3) * 90 + 'ms';
-    }
+    element.style.transitionDelay = (index % 4) * 70 + 'ms';
     revealObserver.observe(element);
   });
 } else {
