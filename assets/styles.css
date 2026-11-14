@@ -71,3 +71,87 @@ textarea:focus-visible{
 .case-image + .case-image {
     margin-top: 50px;
 }
+
+
+/* Portfolio animation enhancements */
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes artFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+@keyframes eyebrowTypeReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes caretBlink {
+  0%, 49% { border-color: var(--coral); }
+  50%, 100% { border-color: transparent; }
+}
+
+.hero .hero-grid > div:first-child > * {
+  animation: heroFadeUp .75s cubic-bezier(.2,.7,.2,1) both;
+}
+.hero .hero-grid > div:first-child > .eyebrow {
+  animation: heroFadeUp .65s ease both, eyebrowTypeReveal 1.15s steps(32,end) .15s both;
+}
+.hero .hero-grid > div:first-child > h1 { animation-delay: .18s; }
+.hero .hero-grid > div:first-child > p { animation-delay: .32s; }
+.hero .hero-grid > div:first-child > .actions { animation-delay: .46s; }
+.hero .editorial-art { animation: heroFadeUp .9s ease .25s both; }
+.hero .editorial-art .sheet { animation: artFloat 6s ease-in-out 1s infinite; }
+.hero .search-ring { animation: artFloat 5s ease-in-out .5s infinite; }
+
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+}
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cards .card:nth-child(2),
+.work-grid .project:nth-child(2) { transition-delay: .12s; }
+.cards .card:nth-child(3) { transition-delay: .24s; }
+
+.card, .project, .sample {
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.card:hover, .project:hover, .sample:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px rgba(11,23,54,.11);
+  border-color: rgba(37,99,235,.28);
+}
+.project-visual img {
+  transition: transform .55s cubic-bezier(.2,.7,.2,1);
+}
+.project:hover .project-visual img { transform: scale(1.035); }
+.navlinks a:not(.btn)::after {
+  transition: transform .25s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.navlinks a:not(.btn):hover::after { transform: scaleX(1); }
+.btn { transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease; }
+.btn:hover { transform: translateY(-3px); }
+.link { transition: color .2s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .hero-grid > div:first-child > *,
+  .hero .editorial-art,
+  .hero .editorial-art .sheet,
+  .hero .search-ring {
+    animation: none !important;
+  }
+  html.js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .card, .project, .sample, .project-visual img, .btn {
+    transition: none !important;
+  }
+}
