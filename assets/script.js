@@ -36,7 +36,23 @@ if ('IntersectionObserver' in window) {
   });
 
   revealTargets.forEach((element, index) => {
-    element.setAttribute('data-reveal', '');
+    let revealType = 'text';
+
+    if (element.matches('h1, h2, h3, .section-head h2, .page-hero h1')) {
+      revealType = 'heading';
+    } else if (element.matches('.card, .project, .sample, .service-row, .timeline-item, .contact-item, .form')) {
+      revealType = 'card';
+    } else if (element.matches('li, .strip-grid > div')) {
+      revealType = 'list';
+    } else if (element.matches('.case-image, .project-visual, img')) {
+      revealType = 'media';
+    } else if (element.matches('a.btn, button, input[type="submit"], .pill')) {
+      revealType = 'action';
+    } else if (element.matches('p')) {
+      revealType = 'paragraph';
+    }
+
+    element.setAttribute('data-reveal', revealType);
     element.style.transitionDelay = (index % 4) * 70 + 'ms';
     revealObserver.observe(element);
   });
